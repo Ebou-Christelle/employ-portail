@@ -1,0 +1,16 @@
+# Secrets — jamais dans le repo
+.env
+*.env
+!*.env.example
+
+# Config locale Claude Code
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Artefacts Windows (téléchargement)
+*:Zone.Identifier

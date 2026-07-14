@@ -1,0 +1,27 @@
+# Render Blueprint — portail emploi Diaspora Connect (tout-en-un).
+# Dans Render : New + → Blueprint → choisir ce repo → Apply.
+# Déploie 2 services gratuits :
+#   1. le moteur de matching (FastAPI, dossier matching/)
+#   2. le board d'offres (site statique, dossier site/)
+# La clé OPENAI_API_KEY se renseigne dans le dashboard (secret, JAMAIS commitée).
+services:
+  - type: web
+    name: diaspora-emploi-matching
+    runtime: python
+    plan: free
+    region: frankfurt
+    rootDir: matching
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false   # à saisir manuellement dans Render (Environment) — secret
+      - key: APIFY_TOKEN
+        sync: false   # idem — utilisé pour l'option profil LinkedIn du candidat
+
+  - type: web
+    name: diaspora-emploi-board
+    runtime: static
+    rootDir: site
+    staticPublishPath: .
+    buildCommand: ""

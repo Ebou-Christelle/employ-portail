@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+data/events.jsonl
+data/match_result.json
+data/rapport_candidat.html
+data/rapport_candidat.png
+data/landing.html
+data/landing.png
+data/cv_test.pdf

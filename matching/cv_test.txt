@@ -1,0 +1,21 @@
+CV — Aïcha N'GUESSAN (profil FICTIF de test)
+
+Profil : Analyste Data & Finance, ivoirienne formée en France, souhaite rentrer s'installer à Abidjan.
+
+Formation
+- Master Finance Quantitative — Université Paris-Dauphine (2021)
+- Licence Économie — Université Lyon 2 (2019)
+
+Expérience (3 ans, Paris)
+- Data Analyst Risque — BNP Paribas (2021-2024) : modélisation du risque crédit, dashboards Power BI, automatisation de reportings réglementaires en Python/SQL.
+- Stage Analyste Financier — Société Générale (2021) : analyse de portefeuille, contrôle de gestion.
+
+Compétences
+- Python, SQL, Power BI, Excel avancé, modélisation financière
+- Analyse de données, data visualisation, reporting
+- Français (natif), Anglais (courant, TOEIC 950)
+
+Recherche
+- Poste data / finance / contrôle de gestion à Abidjan (Côte d'Ivoire)
+- Secteurs visés : banque, fintech, tech, conseil
+- Disponible immédiatement, mobilité Abidjan

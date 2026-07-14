@@ -1,0 +1,23 @@
+{
+ "date": "2026-07-06",
+ "actives": 160,
+ "archive": 457,
+ "nouvelles_ce_run": 29,
+ "archivees_ce_run": {
+  "date_limite": 17,
+  "retirees_source": 184,
+  "plus_10_mois": 0
+ },
+ "sources_ok": [
+  "LinkedIn",
+  "Novojob",
+  "RMO Jobcenter"
+ ],
+ "par_source": {
+  "Novojob": 50,
+  "LinkedIn": 89,
+  "RMO Jobcenter": 15,
+  "Educarriere": 6
+ },
+ "sheet": "https://docs.google.com/spreadsheets/d/1gVK-uouTs-KhJ4l1iiShUrcuGaugWqP7S7r24BQILPU/edit"
+}
