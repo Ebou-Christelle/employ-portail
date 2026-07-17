@@ -14,3 +14,10 @@ venv/
 
 # Artefacts Windows (téléchargement)
 *:Zone.Identifier
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
