@@ -1,11 +1,11 @@
 {
- "date": "2026-07-06",
- "actives": 160,
- "archive": 457,
- "nouvelles_ce_run": 29,
+ "date": "2026-07-18",
+ "actives": 137,
+ "archive": 546,
+ "nouvelles_ce_run": 66,
  "archivees_ce_run": {
-  "date_limite": 17,
-  "retirees_source": 184,
+  "date_limite": 1,
+  "retirees_source": 91,
   "plus_10_mois": 0
  },
  "sources_ok": [
@@ -14,10 +14,10 @@
   "RMO Jobcenter"
  ],
  "par_source": {
+  "RMO Jobcenter": 16,
   "Novojob": 50,
-  "LinkedIn": 89,
-  "RMO Jobcenter": 15,
-  "Educarriere": 6
+  "LinkedIn": 66,
+  "Educarriere": 5
  },
  "sheet": "https://docs.google.com/spreadsheets/d/1gVK-uouTs-KhJ4l1iiShUrcuGaugWqP7S7r24BQILPU/edit"
 }
