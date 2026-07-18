@@ -6,7 +6,9 @@ import json, os, time, datetime, urllib.request
 TODAY = datetime.date.today().isoformat()
 HERE = os.path.dirname(__file__)
 OUT = os.path.join(HERE, "..", "data", "linkedin_offers.json")
-TOK = open(os.path.expanduser("~/.config/agents/secrets/apify.txt")).read().strip()
+TOK = os.environ.get("APIFY_TOKEN", "").strip()
+if not TOK:  # secours : ancien emplacement fichier (machine Mstudio)
+    TOK = open(os.path.expanduser("~/.config/agents/secrets/apify.txt")).read().strip()
 ACTOR = "curious_coder~linkedin-jobs-scraper"
 COUNT = int(os.environ.get("LI_COUNT", "250"))
 URL = "https://www.linkedin.com/jobs/search/?location=C%C3%B4te%20d%27Ivoire&f_TPR=r2592000&sortBy=DD"
@@ -39,7 +41,9 @@ def main():
                {"urls": [URL], "count": COUNT, "scrapeCompany": False})["data"]
     rid, dsid = run["id"], run["defaultDatasetId"]
     print(f"run {rid} dataset {dsid}")
-    deadline = time.time() + 150  # cap court : le precheck cron a un timeout dur de 300s global
+    # LI_WAIT : temps d'attente max du run Apify (défaut 150s, héritage du cron Mstudio ;
+    # en GitHub Actions on met plus long, aucun timeout global ne nous presse)
+    deadline = time.time() + int(os.environ.get("LI_WAIT", "150"))
     while time.time() < deadline:
         time.sleep(15)
         st = get(f"https://api.apify.com/v2/actor-runs/{rid}?token={TOK}")["data"]["status"]

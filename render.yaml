@@ -1,8 +1,9 @@
 # Render Blueprint — portail emploi Diaspora Connect (tout-en-un).
 # Dans Render : New + → Blueprint → choisir ce repo → Apply.
-# Déploie 2 services gratuits :
-#   1. le moteur de matching (FastAPI, dossier matching/)
-#   2. le board d'offres (site statique, dossier site/)
+# Déploie 3 services :
+#   1. le moteur de matching (FastAPI, dossier matching/) — gratuit
+#   2. le board d'offres (site statique, dossier site/) — gratuit
+#   3. le cron de rafraîchissement hebdo des offres — ~1 $/mois
 # La clé OPENAI_API_KEY se renseigne dans le dashboard (secret, JAMAIS commitée).
 services:
   - type: web
@@ -25,3 +26,21 @@ services:
     rootDir: site
     staticPublishPath: .
     buildCommand: ""
+
+  # 3. Rafraîchissement hebdo des offres (~1 $/mois — pas de palier gratuit pour les crons)
+  - type: cron
+    name: diaspora-emploi-refresh
+    runtime: python
+    region: frankfurt
+    schedule: "30 6 * * 1"   # tous les lundis 06h30 UTC
+    buildCommand: pip install requests beautifulsoup4
+    startCommand: bash scripts/refresh_render.sh
+    envVars:
+      - key: APIFY_TOKEN
+        sync: false   # à saisir dans Render — collecte des offres LinkedIn
+      - key: OPENAI_API_KEY
+        sync: false   # à saisir dans Render — index d'embeddings du matching
+      - key: GITHUB_TOKEN
+        sync: false   # à saisir dans Render — push du résultat vers le repo
+      - key: LI_WAIT
+        value: "600"  # attente max du run Apify (s) — pas de timeout global ici
