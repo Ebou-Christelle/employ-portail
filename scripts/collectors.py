@@ -181,6 +181,40 @@ def rmo(pause=1.0):
     return out
 
 
+# ---------------------------------------------------------- YOP L-FRII (régional)
+def yop_lfrii(max_pages=15, pause=1.0):
+    """Site régional (Togo/CI/orgs internationales) : ne garde que les offres
+    mentionnant explicitement la Côte d'Ivoire (titre ou URL). Pas de champ
+    entreprise/date fiable sur ce site -> laissés vides (zéro donnée inventée)."""
+    out, seen = [], set()
+    for p in range(1, max_pages + 1):
+        url = "https://yop.l-frii.com/offres-demplois/" if p == 1 else f"https://yop.l-frii.com/offres-demplois/{p}/"
+        try:
+            soup = BeautifulSoup(_get(url), "html.parser")
+        except Exception as e:
+            print(f"  [yop-lfrii] page {p} fail: {e}"); break
+        arts = soup.find_all("article", class_="dce-post")
+        if not arts:
+            print(f"  [yop-lfrii] page {p}: vide (stop)"); break
+        new = 0
+        for art in arts:
+            a = art.select_one("h2.elementor-heading-title a[href]")
+            if not a:
+                continue
+            href = a["href"].strip()
+            if href in seen:
+                continue
+            seen.add(href)
+            title = _txt(a)
+            if "ivoire" not in title.lower() and "ivoire" not in href.lower():
+                continue  # offre d'un autre pays (site régional) -> hors périmètre
+            out.append(_rec(titre=title, lieu="Côte d'Ivoire", url=href, source="Yop L-Frii"))
+            new += 1
+        print(f"  [yop-lfrii] page {p}: +{new} CI (total {len(out)})")
+        time.sleep(pause)
+    return out
+
+
 # ------------------------------------------------ LinkedIn (via Apify, fichier)
 def linkedin():
     """Lit data/linkedin_offers.json (produit par fetch_apify_linkedin.py). Pas de coût ici."""
@@ -195,7 +229,8 @@ def linkedin():
     return recs
 
 
-COLLECTORS = {"Novojob": novojob, "Educarriere": educarriere, "RMO Jobcenter": rmo, "LinkedIn": linkedin}
+COLLECTORS = {"Novojob": novojob, "Educarriere": educarriere, "RMO Jobcenter": rmo,
+              "Yop L-Frii": yop_lfrii, "LinkedIn": linkedin}
 
 if __name__ == "__main__":
     import json, sys
