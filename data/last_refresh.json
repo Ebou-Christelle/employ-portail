@@ -1,23 +1,25 @@
 {
  "date": "2026-07-20",
- "actives": 135,
- "archive": 562,
- "nouvelles_ce_run": 14,
+ "actives": 133,
+ "archive": 604,
+ "nouvelles_ce_run": 43,
  "archivees_ce_run": {
   "date_limite": 0,
-  "retirees_source": 16,
+  "retirees_source": 52,
   "plus_10_mois": 0
  },
  "sources_ok": [
   "LinkedIn",
   "Novojob",
-  "RMO Jobcenter"
+  "RMO Jobcenter",
+  "Yop L-Frii"
  ],
  "par_source": {
+  "LinkedIn": 60,
   "RMO Jobcenter": 13,
   "Novojob": 50,
-  "LinkedIn": 67,
-  "Educarriere": 5
+  "Educarriere": 5,
+  "Yop L-Frii": 5
  },
  "sheet": "https://docs.google.com/spreadsheets/d/1gVK-uouTs-KhJ4l1iiShUrcuGaugWqP7S7r24BQILPU/edit"
 }
